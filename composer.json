@@ -1,5 +1,5 @@
 {
-    "name": "mia3/typo3-categories",
+    "name": "mia3/mia3_categories",
     "type": "typo3-cms-extension",
     "autoload": {
         "psr-4": {
