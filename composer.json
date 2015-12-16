@@ -1,0 +1,9 @@
+{
+    "name": "mia3/typo3-categories",
+    "type": "typo3-cms-extension",
+    "autoload": {
+        "psr-4": {
+            "Mia3\\Mia3Categories\\": "Classes"
+        }
+    }
+}
