@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Mia3\Mia3Categories\Controller;
 
 /***************************************************************
@@ -25,6 +25,10 @@ namespace Mia3\Mia3Categories\Controller;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
 /**
  * FooController
  */
@@ -34,8 +38,33 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @return void
      */
     public function indexAction() {
+        $where = '1=!';
+        if (isset($_GET['id'])) {
+            $where = 'pid = ' . $_GET['id'];
+        }
+        $categories = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+			'*',
+			'sys_category',
+			$where . BackendUtility::BEenableFields('sys_category'),
+            '',
+            'sorting'
+		);
+        $categories = $this->createNestedSet($categories);
+        $this->view->assign('categories', $categories);
     }
-    
+
+    public function createNestedSet($rows, $parent = array('uid' => 0)) {
+        $children = array();
+        foreach ($rows as $key => $row) {
+            // var_dump($row);
+            if ($row['parent'] == $parent['uid']) {
+                $row['children'] = $this->createNestedSet($rows, $row);
+                $children[] = $row;
+            }
+        }
+        return $children;
+    }
+
     /**
      * @return void
      */

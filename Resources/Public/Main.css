@@ -1,0 +1,58 @@
+body {
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.sortable {
+	display: block;
+	margin: 80px 40px;
+	padding: 0;
+	border: 1px solid #cccccc;
+	background: #f7f7f7;
+}
+
+.sortable ul {
+	margin-left: 0px;
+	padding-left: 30px;
+	background: #fafafa;
+	border-top: 1px solid #cccccc;
+}
+
+.sortable ul ul {
+	border-left: 1px dashed #dadada;
+}
+
+.sortable li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.sortable li .item-title {
+	padding: 10px 10px;
+	border-top: 1px solid #cccccc;
+}
+
+
+.sortable ul li .item-title {
+	border-left: 1px solid #cccccc;
+}
+
+
+.sortable .icon {
+	margin-right: 5px;
+	display: inline-block;
+	position: relative;
+	top: 4px;
+}
+
+.btn-group {
+	float: right;
+}
+
+.btn-default {
+	display: inline-block;
+}

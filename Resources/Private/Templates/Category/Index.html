@@ -1,1 +1,50 @@
-foobar
+<f:section name="CategoryItem">
+	<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
+		<li class="item {zebraClass}">
+	</f:cycle>
+	<div class="item-title">
+		<a href="#" class="icon" data-table="sys_category" data-uid="83" data-listframe="1">
+			<span class="icon-markup">
+				<img src="/typo3/sysext/core/Resources/Public/Icons/T3Icons/mimetypes/mimetypes-x-sys_category.svg" width="16" height="16">
+			</span>
+		</a>
+		{category.title}
+
+		<div class="btn-group" role="group">
+			<a class="btn btn-default" href="#" onclick="window.location.href='\/typo3\/index.php?route=%2Frecord%2Fedit\u0026token=850449a5a17f53e0dd946d61882278ec1eabea59\u0026edit[sys_category][83]=edit\u0026returnUrl='+T3_THIS_LOCATION; return false;" title=""
+			data-original-title="Edit record">
+				<span class="icon-markup">
+					<img src="/typo3/sysext/core/Resources/Public/Icons/T3Icons/actions/actions-open.svg" width="16" height="16">
+				</span>
+			</a>
+			<a class="btn btn-default t3js-record-hide" data-state="visible" href="#" data-params="data[sys_category][83][hidden]=1" title="" data-toggle-title="Un-hide record" data-original-title="Hide record">
+				<span class="icon-markup">
+					<img src="/typo3/sysext/core/Resources/Public/Icons/T3Icons/actions/actions-edit-hide.svg" width="16" height="16">
+				</span>
+			</a>
+			<a class="btn btn-default t3js-record-delete" href="#" data-l10parent="0" data-params="cmd[sys_category][83][delete]=1" data-title="Leistungen (83)" data-message="Are you sure you want to delete this record? &quot;Leistungen (83)&quot; [sys_category:83] (There are 4 reference(s) to this record!)"
+			title="" data-original-title="Delete record (!)">
+				<span class="icon-markup">
+					<img src="/typo3/sysext/core/Resources/Public/Icons/T3Icons/actions/actions-edit-delete.svg" width="16" height="16">
+				</span>
+			</a>
+		</div>
+	</div>
+	<ul class="items">
+		<f:for each="{category.children}" as="child">
+			<f:render section="CategoryItem" arguments="{category: child}" />
+		</f:for>
+	</ul>
+	</li>
+</f:section>
+
+<ul class="items sortable">
+	<f:for each="{categories}" as="category">
+		<f:render section="CategoryItem" arguments="{category: category}" />
+	</f:for>
+</ul>
+
+<script src="{f:uri.resource(path:'Components/jquery/jquery.js')}"></script>
+<script src="{f:uri.resource(path:'Components/jquery-sortable-lists/jquery-sortable-lists.js')}"></script>
+<script src="{f:uri.resource(path:'Main.js')}"></script>
+<link href="{f:uri.resource(path:'Main.css')}" rel="stylesheet" />
