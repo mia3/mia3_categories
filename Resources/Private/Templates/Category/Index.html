@@ -1,3 +1,4 @@
+<f:debug>{_all}</f:debug>
 <f:section name="CategoryItem">
 	<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
 		<li class="item {zebraClass}">
@@ -11,8 +12,7 @@
 		{category.title}
 
 		<div class="btn-group" role="group">
-			<a class="btn btn-default" href="#" onclick="window.location.href='\/typo3\/index.php?route=%2Frecord%2Fedit\u0026token=850449a5a17f53e0dd946d61882278ec1eabea59\u0026edit[sys_category][83]=edit\u0026returnUrl='+T3_THIS_LOCATION; return false;" title=""
-			data-original-title="Edit record">
+			<a class="btn btn-default" href="{baseUrl}?route=/record/edit&token={token}&edit[sys_category][{category.uid}]=edit&M=web_list&returnUrl={returnUrl}">
 				<span class="icon-markup">
 					<img src="/typo3/sysext/core/Resources/Public/Icons/T3Icons/actions/actions-open.svg" width="16" height="16">
 				</span>

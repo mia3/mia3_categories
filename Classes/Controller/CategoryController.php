@@ -51,6 +51,9 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 		);
         $categories = $this->createNestedSet($categories);
         $this->view->assign('categories', $categories);
+        $this->view->assign('token', $_GET['moduleToken']);
+        $this->view->assign('returnUrl', urlencode($_SERVER['REQUEST_URI']));
+        $this->view->assign('baseUrl', urlencode($_SERVER['SCRIPT_NAME']));
     }
 
     public function createNestedSet($rows, $parent = array('uid' => 0)) {
