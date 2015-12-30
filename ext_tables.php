@@ -10,7 +10,7 @@ if (TYPO3_MODE === 'BE') {
         'txmia3categoriesmod1',         // Name of the module
         '',             // Position of the module
         array(          // Allowed controller action combinations
-            'Category' => 'index,updateSorting'
+            'Category' => 'index,updateSorting,batchCreate'
         ),
         array(          // Additional configuration
             'access'    => 'user,group',

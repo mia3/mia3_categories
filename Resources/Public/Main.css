@@ -6,47 +6,52 @@ body {
     background-color: #ffffff;
 }
 
-.sortable {
+.items {
 	display: block;
 	margin: 80px 40px;
 	padding: 0;
-	border: 1px solid #cccccc;
-	background: #f7f7f7;
+	/*background: #f7f7f7;*/
 }
 
-.sortable ul {
+.uk-nestable ul {
 	margin-left: 0px;
 	padding-left: 30px;
-	background: #fafafa;
-	border-top: 1px solid #cccccc;
+	/*background: #fafafa;*/
 }
 
-.sortable ul ul {
+.uk-nestable ul ul {
 	border-left: 1px dashed #dadada;
 }
 
-.sortable li {
+.uk-nestable li {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 }
 
-.sortable li .item-title {
-	padding: 10px 10px;
-	border-top: 1px solid #cccccc;
+.uk-nestable li .item-title {
+	padding: 5px 10px;
+	margin-top: 3px;
+}
+
+.uk-nestable ul li .item-title {
 }
 
 
-.sortable ul li .item-title {
-	border-left: 1px solid #cccccc;
-}
-
-
-.sortable .icon {
+.uk-nestable .icon {
+	width: 15px;
+	height: 15px;
 	margin-right: 5px;
 	display: inline-block;
-	position: relative;
-	top: 4px;
+}
+
+/*.uk-nestable-placeholder .uk-nestable,
+.uk-nestable-dragged .uk-nestable {
+	display: none;
+}*/
+
+.uk-nestable-collapsed.uk-nestable {
+	display: none;
 }
 
 .btn-group {
@@ -55,4 +60,15 @@ body {
 
 .btn-default {
 	display: inline-block;
+}
+
+textarea,
+pre {
+    -moz-tab-size : 4;
+      -o-tab-size : 4;
+         tab-size : 4;
+}
+
+.docheader-row2-left {
+	padding: 20px;
 }

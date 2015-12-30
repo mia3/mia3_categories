@@ -72,6 +72,57 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @return void
      */
     public function updateSortingAction() {
+        if ($this->request->hasArgument('positions')) {
+            $positions = array();
+            foreach ($this->request->getArgument('positions') as $uid => $row) {
+                $GLOBALS['TYPO3_DB']->exec_UPDATEquery('sys_category', 'uid = ' . intval($uid), array(
+                    'sorting' => intval($row['sorting']),
+                    'parent' => intval($row['parent'])
+                ));
+            }
+        }
+        return '1';
+    }
+
+    /**
+     * @return void
+     */
+    public function batchCreateAction() {
+        $categories = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+			'*',
+			'sys_category',
+			'1=1' . BackendUtility::BEenableFields('sys_category'),
+            '',
+            'sorting'
+		);
+        $this->view->assign('categories', $categories);
+
+        if ($this->request->hasArgument('categories')) {
+            $parents = array();
+            if (!empty($this->request->getArgument('parent'))) {
+                $parents[] = $this->request->getArgument('parent');
+            }
+
+            $categories = explode(chr(10), $this->request->getArgument('categories'));
+
+            foreach ($categories as $category) {
+                $category = rtrim($category);
+                $depth = strlen($category) - strlen(ltrim($category, "\t"));
+                $category = trim($category);
+
+                $data = array(
+                    'pid' => intval($_GET['id']),
+                    'title' => $category,
+                    'tstamp' => time(),
+                    'crdate' => time(),
+                    'parent' => isset($parents[$depth]) ? $parents[$depth] : 0
+                );
+                $GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_category', $data);
+                $parents[$depth + 1] = $GLOBALS['TYPO3_DB']->sql_insert_id();
+            }
+
+            $this->redirect('index');
+        }
     }
 
 }

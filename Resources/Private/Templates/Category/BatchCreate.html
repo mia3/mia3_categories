@@ -1,0 +1,58 @@
+<f:be.container>
+	<div class="typo3-fullDoc">
+		<div id="typo3-docheader">
+			<div id="typo3-docheader-row1">
+				<div class="buttonsleft">
+				</div>
+				<div class="buttonsright">
+				</div>
+			</div>
+			<div id="typo3-docheader-row2">
+				<div class="docheader-row2-left">
+				</div>
+				<div class="docheader-row2-right">
+				</div>
+			</div>
+		</div>
+		<div id="typo3-docbody">
+			<div id="typo3-inner-docbody">
+				<f:form action="batchCreate">
+					<h1>Batch Create Categories</h1>
+					<div class="typo3-TCEforms">
+						<fieldset class="form-section">
+							<div class="form-group">
+								<label class="t3js-formengine-label">
+									Parent
+								</label>
+								<div class="t3js-formengine-field-item">
+									<div class="t3-form-field-disable"></div>
+									<div class="form-control-wrap" style="max-width: 480px">
+										<f:form.select name="parent" options="{categories}" optionLabelField="title" optionValueField="uid" prependOptionLabel="" class="form-control form-control-adapt"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="t3js-formengine-label">
+									Categories
+								</label>
+								<div class="t3js-formengine-field-item">
+									<div class="t3-form-field-disable"></div>
+									<div class="form-control-wrap" style="max-width: 480px">
+										<f:form.textarea name="categories" id="categories-textarea" rows="10" class="form-control t3js-formengine-textarea formengine-textarea" />
+									</div>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-default">Create</button>
+						</fieldset>
+					</div>
+				</f:form>
+			</div>
+		</div>
+	</div>
+
+	<script src="{f:uri.resource(path:'Components/tabIndent.js/js/tabIndent.js')}"></script>
+	<script>
+		tabIndent.render(document.getElementById('categories-textarea'));
+	</script>
+	<link href="{f:uri.resource(path:'Main.css')}" rel="stylesheet" />
+</f:be.container>
