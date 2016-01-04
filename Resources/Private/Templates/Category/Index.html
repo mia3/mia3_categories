@@ -10,7 +10,25 @@
 				<img src="/typo3/sysext/core/Resources/Public/Icons/T3Icons/mimetypes/mimetypes-x-sys_category.svg" width="16" height="16">
 			</span>
 		</a>
-		{category.title}
+		<strong>{category.title}</strong>
+		<f:if condition="{category.description}">
+			<br />description: {category.description}
+		</f:if>
+		<f:if condition="{category.icon}">
+			<br />icon: {category.icon}
+		</f:if>
+		<f:if condition="{category.type}">
+			<br />type: {category.type}
+		</f:if>
+		<f:if condition="{category.comparison_type}">
+			<br />compare: {category.comparison_type}
+		</f:if>
+		<f:if condition="{category.detail_view}">
+			<br />detail: {category.detail_view}
+		</f:if>
+		<f:if condition="{category.value_format}">
+			<br />format: {category.value_format}
+		</f:if>
 
 		<div class="btn-group" role="group">
 			<c:be.editLink uid="{category.uid}" class="btn btn-default">

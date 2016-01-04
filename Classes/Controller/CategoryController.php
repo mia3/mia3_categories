@@ -93,8 +93,18 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 			'sys_category',
 			'1=1' . BackendUtility::BEenableFields('sys_category'),
             '',
-            'sorting'
+            'sorting',
+            '',
+            'uid'
 		);
+        foreach ($categories as $key => $category) {
+            $level = 0;
+            while ($category['parent'] > 0) {
+                $category = $categories[$category['parent']];
+                $level++;
+            }
+            $categories[$key]['title'] = str_repeat('- ', $level) . $categories[$key]['title'];
+        }
         $this->view->assign('categories', $categories);
 
         if ($this->request->hasArgument('categories')) {
