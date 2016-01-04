@@ -49,8 +49,6 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             '',
             'sorting'
 		);
-        var_dump($where . BackendUtility::BEenableFields('sys_category'));
-        exit();
         $categories = $this->createNestedSet($categories);
         $this->view->assign('categories', $categories);
         $this->view->assign('token', $_GET['moduleToken']);
