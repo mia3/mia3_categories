@@ -45,10 +45,12 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $categories = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'*',
 			'sys_category',
-			$where . BackendUtility::BEenableFields('sys_category'),
+			$where . ' AND deleted = 0' . BackendUtility::BEenableFields('sys_category'),
             '',
             'sorting'
 		);
+        var_dump($where . BackendUtility::BEenableFields('sys_category'));
+        exit();
         $categories = $this->createNestedSet($categories);
         $this->view->assign('categories', $categories);
         $this->view->assign('token', $_GET['moduleToken']);
@@ -59,7 +61,6 @@ class CategoryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     public function createNestedSet($rows, $parent = array('uid' => 0)) {
         $children = array();
         foreach ($rows as $key => $row) {
-            // var_dump($row);
             if ($row['parent'] == $parent['uid']) {
                 $row['children'] = $this->createNestedSet($rows, $row);
                 $children[] = $row;
