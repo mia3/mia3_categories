@@ -100,10 +100,12 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
         foreach($children as $child) {
             $uids[] = $child->getUid();
         }
-        $where = '  tablenames = "pages"
-                    AND fieldname = "categories"
-                    AND uid_local IN (' . implode(',', $uids) . ')';
-        $result = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows('uid_local', 'sys_category_record_mm', $where);
+        $where = '  sys_category_record_mm.tablenames = "pages"
+                    AND sys_category_record_mm.fieldname = "categories"
+                    AND sys_category_record_mm.uid_foreign = pages.uid 
+                    AND sys_category_record_mm.uid_local IN (' . implode(',', $uids) . ')
+                    ' . $GLOBALS["TSFE"]->sys_page->enableFields('pages');
+        $result = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows('uid_local', 'sys_category_record_mm, pages', $where);
         return $result > 0;
     }
 }
